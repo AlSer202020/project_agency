@@ -36,11 +36,11 @@ def catalogo():
 @app.route("/catalogo/<int:idProducto>")
 def producto(idProducto):
     if 0 <= idProducto < len(productos):
-        abort(404)
+        return render_template(
+            "producto.html", idProducto=idProducto, producto=productos[idProducto]
+        )
 
-    return render_template(
-        "producto.html", idProducto=idProducto, producto=productos[idProducto]
-    )
+    abort(404)
 
 
 @app.route("/contacto", methods=["GET"])
