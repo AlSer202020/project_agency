@@ -1,8 +1,10 @@
 {% extends "base.html" %}
-
-{% block title %}Not found{% endblock %}
-
+{% block title %}Contenido no encontrado{% endblock %}
 {% block content %}
-<h2>No encontrado</h2>
-
+<div class="centrado">
+  <h1>Tu Viaje a Medida</h1>
+  <h2>Contenido no disponible</h2>
+  <p>La página que buscas no existe o ya no está en nuestro catálogo.</p>
+  <p><a class="boton" href="{{ url_for('inicio') }}">Volver al inicio</a></p>
+</div>
 {% endblock %}

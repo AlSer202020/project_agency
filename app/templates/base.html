@@ -1,50 +1,34 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Mi APP{% endblock %}</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/basic.css') }}">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Inicio{% endblock %} | Tu Viaje a Medida</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
-
 <body>
-    <header>
-        <h1>Esta es la Cabecera de mi aplicacion</h1>
-
-        <nav>
-            <ul>
-                <li>
-                    <a href="{{ url_for('home') }}">Inicio</a>
-                </li>
-                <li>
-                    <a href="{{ url_for('saludo', name='invitado') }}">Saluda</a>
-                </li>
-                <li>
-                    <a href="{{ url_for('catalogo') }}"">Catalogo</a>
-                </li>
-                <li>
-                    <a href=" {{ url_for('contacto') }}">Contacto</a>
-                </li>
-                <li>
-                    <a href="{{ url_for('filtrar') }}">Filtrar</a>
-                </li>
-                <li>
-                    <a href="{{ url_for('login') }}">Iniciar Sesión</a>
-                </li>
-            </ul>
-        </nav>
-        <hr />
-    </header>
-    <main>
-        {% block content %}
-        <h1>Contenido de mi página</h1>
-        {% endblock %}
-    </main>
-    <footer>
-        <hr />
-        <p>2026&copy;IES Las Galletas</p>
-    </footer>
+ 
+  <header>
+    <h1>Tu Viaje a Medida</h1>
+    <nav>
+      <a href="{{ url_for('inicio') }}">Inicio</a>
+      <a href="{{ url_for('lista_destinos') }}">Destinos</a>
+      <a href="{{ url_for('lista_alojamientos') }}">Alojamientos</a>
+      <a href="{{ url_for('lista_actividades') }}">Actividades</a>
+      <a href="{{ url_for('explorador_destinos') }}">Explorador</a>
+      <a href="{{ url_for('comparador_alojamientos') }}">Comparador</a>
+      <a href="{{ url_for('asistente_viaje') }}">Viaje a medida</a>
+      <a href="{{ url_for('acerca') }}">Acerca de nosotros</a>
+    </nav>
+  </header>
+ 
+  <div class="contenedor">
+    {% block content %}{% endblock %}
+  </div>
+ 
+  <footer>
+    <p>Tu Viaje a Medida - Agencia de viajes personalizados</p>
+  </footer>
+ 
 </body>
-
 </html>

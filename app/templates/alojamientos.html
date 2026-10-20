@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Alojamientos{% endblock %}
+{% block content %}
+<h1>Alojamientos</h1>
+
+{% if alojamientos %}
+<ul class="lista">
+  {% for a in alojamientos %}
+  <li><a href="{{ url_for('detalle_alojamiento', id_alojamiento=a.id_alojamiento) }}">{{ a.nombre }}</a> - {{ a.tipo|tipo_texto }}</li>
+  {% endfor %}
+</ul>
+{% else %}
+<p class="aviso">Todavía no hay alojamientos en el catálogo.</p>
+{% endif %}
+{% endblock %}

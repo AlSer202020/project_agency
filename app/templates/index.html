@@ -1,10 +1,22 @@
 {% extends "base.html" %}
-
-{% block content %}
-<h2>Este es el contenido de index</h2>
-<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Assumenda, magni dicta. Velit nisi qui possimus, soluta
-    ducimus nam omnis corporis reiciendis enim, quibusdam at, quaerat impedit praesentium cumque sequi suscipit.</p>
-<img src="{{ url_for('static', filename='img/aguila.png') }}" alt="Imagen de prueba de un aguila">
-{% endblock %}
-
 {% block title %}Inicio{% endblock %}
+{% block content %}
+<h1>Bienvenido a Tu Viaje a Medida</h1>
+<p>Somos una agencia de viajes especializada en experiencias personalizadas. Consulta nuestro catálogo o usa los buscadores para encontrar el viaje que mejor se ajusta a ti.</p>
+
+<h2>Nuestra oferta actual</h2>
+<div class="caja">
+  <span class="cifra">{{ resumen.destinos }}</span> destinos
+</div>
+<div class="caja">
+  <span class="cifra">{{ resumen.alojamientos }}</span> alojamientos
+</div>
+<div class="caja">
+  <span class="cifra">{{ resumen.actividades }}</span> actividades
+</div>
+
+<p>
+  <a class="boton" href="{{ url_for('lista_destinos') }}">Ver destinos</a>
+  <a class="boton" href="{{ url_for('asistente_viaje') }}">Preparar mi viaje</a>
+</p>
+{% endblock %}

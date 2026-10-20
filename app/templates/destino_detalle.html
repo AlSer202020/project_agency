@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block title %}Asistente de viaje a medida{% endblock %}
+{% block content %}
+<h1>Asistente de viaje a medida</h1>
+
+<form method="post" action="{{ url_for('asistente_viaje') }}">
+  <h3>El destino</h3>
+  <p>
+    {{ form.entorno.label }}
+    {{ form.entorno() }}
+    {% for error in form.entorno.errors %}<span class="error">{{ error }}</span>{% endfor %}
+  </p>
+  <p>{{ form.sin_visado() }} {{ form.sin_visado.label }}</p>
+
+  <h3>La estancia</h3>
+  <p>
+    {{ form.tipo.label }}
+    {{ form.tipo() }}
+    {% for error in form.tipo.errors %}<span class="error">{{ error }}</span>{% endfor %}
+  </p>
+  <p>
+    {{ form.presupuesto_max.label }}
+    {{ form.presupuesto_max() }}
+    {% for error in form.presupuesto_max.errors %}<span class="error">{{ error }}</span>{% endfor %}
+  </p>
+  <p>{{ form.desayuno() }} {{ form.desayuno.label }}</p>
+
+  <p>{{ form.submit() }}</p>
+</form>
+
+{% if resultados is not none %}
+  <h2>Combinaciones encontradas</h2>
+  {% if resultados %}
+    {% for r in resultados %}
+    <div class="caja">
+      <p>
+        <strong>Destino:</strong>
+        <a href="{{ url_for('detalle_destino', slug=r.destino.slug) }}">{{ r.destino.nombre }}</a>
+        ({{ r.destino.pais }})
+      </p>
+      <p>
+        <strong>Alojamiento:</strong>
+        <a href="{{ url_for('detalle_alojamiento', slug=r.alojamiento.slug) }}">{{ r.alojamiento.nombre }}</a>
+        - {{ r.alojamiento.tipo }}, {{ r.alojamiento.precio_noche }} € por noche
+      </p>
+    </div>
+    {% endfor %}
+  {% else %}
+  <p class="aviso">No hay ninguna combinación que cumpla todos tus requisitos.</p>
+  {% endif %}
+{% endif %}
+{% endblock %}

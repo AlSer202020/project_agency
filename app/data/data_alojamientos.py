@@ -5,6 +5,7 @@ Campos (según el esquema del cuaderno):
     id_alojamiento  (int)          Identificador único.
     id_destino      (int)          Relación con DESTINOS["id_destino"].
     nombre          (str)          Nombre comercial.
+    tipo            (str)          "hotel", "hostal", "cabana" o "apartamento" (ver TIPOS).
     precio          (int)          Precio por noche en euros.
     desayuno        (bool)         True si incluye desayuno.
     mascota         (bool)         True si admite mascotas.
@@ -12,25 +13,32 @@ Campos (según el esquema del cuaderno):
     descripcion     (str | None)   Servicios o extras destacados (opcional).
 """
 
+TIPOS = {
+    "hotel": "Hotel",
+    "hostal": "Hostal",
+    "cabana": "Cabaña",
+    "apartamento": "Apartamento",
+}
+
 ALOJAMIENTOS = [
     # --- Kioto (id_destino 1) ---
     {
         "id_alojamiento": 1, "id_destino": 1,
-        "nombre": "Ryokan Tradicional Gion",
+        "nombre": "Ryokan Tradicional Gion", "tipo": "hotel",
         "precio": 140, "desayuno": True, "mascota": False,
         "estrellas": 4,
         "descripcion": "Baño termal privado en la habitación.",
     },
     {
         "id_alojamiento": 2, "id_destino": 1,
-        "nombre": "Capsule Hostel Urban",
+        "nombre": "Capsule Hostel Urban", "tipo": "hostal",
         "precio": 35, "desayuno": False, "mascota": False,
         "estrellas": 2,
         "descripcion": None,
     },
     {
         "id_alojamiento": 3, "id_destino": 1,
-        "nombre": "Apartamento Bambú Arashiyama",
+        "nombre": "Apartamento Bambú Arashiyama", "tipo": "apartamento",
         "precio": 95, "desayuno": False, "mascota": True,
         "estrellas": None,
         "descripcion": "Terraza con vistas al río.",
@@ -38,21 +46,21 @@ ALOJAMIENTOS = [
     # --- Islas Lofoten (id_destino 2) ---
     {
         "id_alojamiento": 4, "id_destino": 2,
-        "nombre": "Rorbu Fjord Cabins",
+        "nombre": "Rorbu Fjord Cabins", "tipo": "cabana",
         "precio": 160, "desayuno": True, "mascota": True,
         "estrellas": 4,
         "descripcion": "Acceso directo al muelle del fiordo.",
     },
     {
         "id_alojamiento": 5, "id_destino": 2,
-        "nombre": "Arctic Light Hotel",
+        "nombre": "Arctic Light Hotel", "tipo": "hotel",
         "precio": 210, "desayuno": True, "mascota": False,
         "estrellas": 5,
         "descripcion": "Mirador acristalado en la azotea.",
     },
     {
         "id_alojamiento": 6, "id_destino": 2,
-        "nombre": "Refugio de Pescadores Svolvær",
+        "nombre": "Refugio de Pescadores Svolvær", "tipo": "hostal",
         "precio": 55, "desayuno": False, "mascota": True,
         "estrellas": None,
         "descripcion": None,
@@ -61,28 +69,28 @@ ALOJAMIENTOS = [
     # --- Playa del Carmen (id_destino 4) ---
     {
         "id_alojamiento": 7, "id_destino": 4,
-        "nombre": "Hostal Caribe Maya",
+        "nombre": "Hostal Caribe Maya", "tipo": "hostal",
         "precio": 25, "desayuno": True, "mascota": True,
         "estrellas": 2,
         "descripcion": None,
     },
     {
         "id_alojamiento": 8, "id_destino": 4,
-        "nombre": "Eco-Villas Tulum Road",
+        "nombre": "Eco-Villas Tulum Road", "tipo": "cabana",
         "precio": 110, "desayuno": False, "mascota": True,
         "estrellas": 3,
         "descripcion": "Funciona al 100% con energía solar.",
     },
     {
         "id_alojamiento": 9, "id_destino": 4,
-        "nombre": "Grand Resort Riviera",
+        "nombre": "Grand Resort Riviera", "tipo": "hotel",
         "precio": 190, "desayuno": True, "mascota": False,
         "estrellas": 5,
         "descripcion": "Club de playa privado.",
     },
     {
         "id_alojamiento": 10, "id_destino": 4,
-        "nombre": "Loft Quinta Avenida",
+        "nombre": "Loft Quinta Avenida", "tipo": "apartamento",
         "precio": 80, "desayuno": False, "mascota": False,
         "estrellas": None,
         "descripcion": None,
@@ -115,10 +123,14 @@ def obtener_alojamientos_por_destino(id_destino):
     )
 
 
+def nombre_tipo(clave):
+    """Texto visible del tipo de alojamiento."""
+    return TIPOS.get(clave, clave)
+
 
 # --- Funciones de filtrado -------------------------------------------------
 
-def filtrar_alojamientos(precio_max=None, desayuno=False, mascota=False,
+def filtrar_alojamientos(precio_max=None, tipo=None, desayuno=False, mascota=False,
                          ids_destino=None):
     """
     Comparador de Alojamientos (y base del Asistente de Viaje a Medida).
@@ -127,6 +139,8 @@ def filtrar_alojamientos(precio_max=None, desayuno=False, mascota=False,
     resultado = ALOJAMIENTOS
     if precio_max is not None:
         resultado = [a for a in resultado if a["precio"] <= precio_max]
+    if tipo:
+        resultado = [a for a in resultado if a["tipo"] == tipo]
     if desayuno:
         resultado = [a for a in resultado if a["desayuno"]]
     if mascota:

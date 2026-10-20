@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}Explorador de destinos{% endblock %}
+{% block content %}
+<h1>Explorador de destinos</h1>
+
+<form method="post" action="{{ url_for('explorador_destinos') }}">
+  <p>
+    {{ form.entorno.label }}
+    {{ form.entorno() }}
+    {% for error in form.entorno.errors %}<span class="error">{{ error }}</span>{% endfor %}
+  </p>
+  <p>
+    {{ form.sin_visado() }} {{ form.sin_visado.label }}
+  </p>
+  <p>{{ form.submit() }}</p>
+</form>
+
+{% if resultados is not none %}
+  <h2>Resultados</h2>
+  {% if resultados %}
+  <ul class="lista">
+    {% for d in resultados %}
+    <li>
+      <a href="{{ url_for('detalle_destino', slug=d.slug) }}">{{ d.nombre }}</a>
+      - {{ d.pais }} ({{ d.entorno }})
+    </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <p class="aviso">No hay destinos que cumplan estos filtros.</p>
+  {% endif %}
+{% endif %}
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Destinos{% endblock %}
+{% block content %}
+<h1>Destinos</h1>
+
+{% if destinos %}
+<ul class="lista">
+  {% for d in destinos %}
+  <li><a href="{{ url_for('detalle_destino', id_destino=d.id_destino) }}">{{ d.nombre }}</a> - {{ d.pais }}</li>
+  {% endfor %}
+</ul>
+{% else %}
+<p class="aviso">Todavía no hay destinos en el catálogo.</p>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Actividades{% endblock %}
+{% block content %}
+<h1>Actividades</h1>
+
+{% if actividades %}
+<ul class="lista">
+  {% for act in actividades %}
+  <li><a href="{{ url_for('detalle_actividad', id_actividad=act.id_actividad) }}">{{ act.nombre }}</a> - {{ act.nombre_destino }}</li>
+  {% endfor %}
+</ul>
+{% else %}
+<p class="aviso">Todavía no hay actividades en el catálogo.</p>
+{% endif %}
+{% endblock %}

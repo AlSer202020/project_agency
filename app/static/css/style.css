@@ -1,0 +1,156 @@
+/* Estilos básicos en verdes oscuros */
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #0f2b21;
+  color: #e8efe3;
+  line-height: 1.5;
+}
+
+.contenedor {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Cabecera y menú */
+header {
+  background-color: #0a1d16;
+  border-bottom: 2px solid #2d6a54;
+}
+
+header h1 {
+  margin: 0;
+  padding: 15px 20px 5px 20px;
+  font-size: 24px;
+}
+
+nav {
+  padding: 5px 20px 15px 20px;
+}
+
+nav a {
+  display: inline-block;
+  margin-right: 15px;
+  color: #a4bcab;
+  text-decoration: none;
+}
+
+nav a:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+/* Pie de página */
+footer {
+  background-color: #0a1d16;
+  border-top: 2px solid #2d6a54;
+  color: #a4bcab;
+  text-align: center;
+  padding: 15px;
+  margin-top: 30px;
+}
+
+/* Textos */
+h1, h2, h3 {
+  color: #c8e0a4;
+}
+
+a {
+  color: #c8e0a4;
+}
+
+a:hover {
+  color: #ffffff;
+}
+
+/* Cajas */
+.caja {
+  background-color: #153a2d;
+  border: 1px solid #2d6a54;
+  padding: 15px;
+  margin-bottom: 15px;
+}
+
+.cifra {
+  font-size: 36px;
+  color: #c8e0a4;
+  font-weight: bold;
+}
+
+.aviso {
+  background-color: #0a1d16;
+  border: 1px dashed #2d6a54;
+  padding: 15px;
+  color: #a4bcab;
+}
+
+.error {
+  color: #e3b98a;
+}
+
+/* Listados */
+ul.lista {
+  list-style: none;
+  padding: 0;
+}
+
+ul.lista li {
+  padding: 10px 0;
+  border-bottom: 1px solid #2d6a54;
+}
+
+/* Formularios */
+form {
+  background-color: #153a2d;
+  border: 1px solid #2d6a54;
+  padding: 15px;
+  margin-bottom: 20px;
+}
+
+form p {
+  margin: 0 0 12px 0;
+}
+
+label {
+  display: block;
+  margin-bottom: 4px;
+}
+
+input[type="checkbox"] + label,
+label + input[type="checkbox"] {
+  display: inline;
+}
+
+select, input[type="number"] {
+  padding: 6px;
+  background-color: #0a1d16;
+  color: #e8efe3;
+  border: 1px solid #2d6a54;
+}
+
+/* Botones */
+.boton, input[type="submit"] {
+  display: inline-block;
+  background-color: #c8e0a4;
+  color: #0a1d16;
+  padding: 8px 16px;
+  border: none;
+  font-size: 16px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.boton:hover, input[type="submit"]:hover {
+  background-color: #a8c97e;
+  color: #0a1d16;
+}
+
+.centrado {
+  text-align: center;
+}
+
+img {
+  max-width: 100%;
+}
