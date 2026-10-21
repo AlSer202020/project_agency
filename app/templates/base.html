@@ -6,12 +6,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{% block title %}Inicio{% endblock %} | Tu Viaje a Medida</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lovers+Quarrel&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
   <header>
-    <h1>Tu Viaje a Medida</h1>
+    <h1 class="lovers-quarrel-regular">Tu Viaje a Medida</h1>
     <nav>
       <a href="{{ url_for('inicio') }}">Inicio</a>
       <a href="{{ url_for('lista_destinos') }}">Destinos</a>

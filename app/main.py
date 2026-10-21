@@ -1,21 +1,22 @@
-from flask import Flask, render_template, abort
+from flask import abort, Flask, render_template
 
+from data.catalogo import (
+    actividad_con_destino,
+    alojamiento_con_destino,
+    buscar_alojamientos,
+    listado_actividades_con_destino,
+    listado_alojamientos_con_destino,
+    resumen_catalogo,
+    viaje_a_medida,
+)
+from data.data_actividades import obtener_actividades_por_destino
+from data.data_alojamientos import nombre_tipo, obtener_alojamientos_por_destino
 from data.data_destinos import (
-    obtener_destinos,
-    obtener_destino_por_id,
     filtrar_destinos,
     nombre_entorno,
-)
-from data.data_alojamientos import obtener_alojamientos_por_destino, nombre_tipo
-from data.data_actividades import obtener_actividades_por_destino
-from data.catalogo import (
-    resumen_catalogo,
-    listado_alojamientos_con_destino,
-    listado_actividades_con_destino,
-    alojamiento_con_destino,
-    actividad_con_destino,
-    buscar_alojamientos,
-    viaje_a_medida,
+    obtener_destino_por_id,
+    obtener_destinos,
+    
 )
 from form import ExploradorForm, ComparadorForm, AsistenteForm
 
@@ -112,10 +113,12 @@ def asistente_viaje():
 # ---------- Fichas de detalle ----------
 @app.route("/destino/<int:id_destino>")
 def detalle_destino(id_destino):
+    lista_destinos=obtener_destinos()
     destino = obtener_destino_por_id(id_destino)
     if destino is None:
         abort(404)
-
+    if destino not in lista_destinos:
+        abort(404)
     return render_template(
         "destino_detalle.html",
         destino=destino,

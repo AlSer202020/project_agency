@@ -21,7 +21,7 @@
   <ul class="lista">
     {% for d in resultados %}
     <li>
-      <a href="{{ url_for('detalle_destino', slug=d.slug) }}">{{ d.nombre }}</a>
+      <a href="{{ url_for('detalle_destino', id_destino=d.id_destino) }}">{{ d.nombre }}</a>
       - {{ d.pais }} ({{ d.entorno }})
     </li>
     {% endfor %}

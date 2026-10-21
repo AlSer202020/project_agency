@@ -4,19 +4,19 @@
 <h1>{{ alojamiento.nombre }}</h1>
 
 <div class="caja">
-  <p><strong>Modalidad:</strong> {{ alojamiento.tipo }}</p>
+  <p><strong>Modalidad:</strong> {{ alojamiento.tipo|tipo_texto }}</p>
   {% if alojamiento.estrellas %}
   <p><strong>Categoría:</strong> {{ '★' * alojamiento.estrellas }} ({{ alojamiento.estrellas }} estrellas)</p>
   {% endif %}
-  <p><strong>Precio por noche:</strong> {{ alojamiento.precio_noche }} €</p>
+  <p><strong>Precio por noche:</strong> {{ alojamiento.precio }} €</p>
   <p><strong>Desayuno incluido:</strong> {% if alojamiento.desayuno %}Sí{% else %}No{% endif %}</p>
-  <p><strong>Admite mascotas:</strong> {% if alojamiento.mascotas %}Sí{% else %}No{% endif %}</p>
-  {% if alojamiento.extra %}
-  <p><strong>Detalles:</strong> {{ alojamiento.extra }}</p>
+  <p><strong>Admite mascotas:</strong> {% if alojamiento.mascota %}Sí{% else %}No{% endif %}</p>
+  {% if alojamiento.descripcion %}
+  <p><strong>Detalles:</strong> {{ alojamiento.descripcion }}</p>
   {% endif %}
 </div>
 
 <p>
-  <a class="boton" href="{{ url_for('detalle_destino', slug=alojamiento.destino_slug) }}">Ver guía completa de {{ alojamiento.destino_nombre }}</a>
+  <a class="boton" href="{{ url_for('detalle_destino', id_destino=alojamiento.id_destino) }}">Ver guía completa de {{ alojamiento.nombre_destino }}</a>
 </p>
 {% endblock %}

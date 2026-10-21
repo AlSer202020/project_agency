@@ -35,12 +35,12 @@
     <div class="caja">
       <p>
         <strong>Destino:</strong>
-        <a href="{{ url_for('detalle_destino', slug=r.destino.slug) }}">{{ r.destino.nombre }}</a>
+        <a href="{{ url_for('detalle_destino', id_destino=r.destino.id_destino) }}">{{ r.destino.nombre }}</a>
         ({{ r.destino.pais }})
       </p>
       <p>
         <strong>Alojamiento:</strong>
-        <a href="{{ url_for('detalle_alojamiento', slug=r.alojamiento.slug) }}">{{ r.alojamiento.nombre }}</a>
+        <a href="{{ url_for('detalle_alojamiento', id_alojamiento=r.alojamiento.id_alojamiento) }}">{{ r.alojamiento.nombre }}</a>
         - {{ r.alojamiento.tipo }}, {{ r.alojamiento.precio_noche }} € por noche
       </p>
     </div>
