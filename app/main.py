@@ -48,12 +48,16 @@ def lista_destinos():
 
 @app.route("/alojamientos")
 def lista_alojamientos():
-    return render_template("alojamientos.html", alojamientos=listado_alojamientos_con_destino())
+    return render_template(
+        "alojamientos.html", alojamientos=listado_alojamientos_con_destino()
+    )
 
 
 @app.route("/actividades")
 def lista_actividades():
-    return render_template("actividades.html", actividades=listado_actividades_con_destino())
+    return render_template(
+        "actividades.html", actividades=listado_actividades_con_destino()
+    )
 
 
 # ---------- Buscadores con formulario ----------

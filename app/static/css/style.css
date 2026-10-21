@@ -6,12 +6,14 @@ body {
   background-color: #0f2b21;
   color: #e8efe3;
   line-height: 1.5;
+  height: 100vh;
 }
 
 .contenedor {
   max-width: 900px;
   margin: 0 auto;
   padding: 20px;
+  height: 75vh;
 }
 
 /* Cabecera y menú */
