@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{% block title %}Inicio{% endblock %} | Tu Viaje a Medida</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
+
 <body>
- 
+
   <header>
     <h1>Tu Viaje a Medida</h1>
     <nav>
@@ -21,14 +23,16 @@
       <a href="{{ url_for('acerca') }}">Acerca de nosotros</a>
     </nav>
   </header>
- 
+
   <div class="contenedor">
     {% block content %}{% endblock %}
   </div>
- 
+
   <footer>
     <p>Tu Viaje a Medida - Agencia de viajes personalizados</p>
+    <small>Desarrollado por Mike y Alexey</small>
   </footer>
- 
+
 </body>
+
 </html>
