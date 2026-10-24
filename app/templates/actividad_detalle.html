@@ -7,20 +7,16 @@
   {% if actividad.descripcion %}
   <p>{{ actividad.descripcion }}</p>
   {% endif %}
-  <p><strong>Destino:</strong> {{ actividad.destino_nombre }}</p>
-  <p><strong>Duración:</strong> {{ actividad.duracion_horas }} horas</p>
-  <p><strong>Precio por persona:</strong> {{ actividad.precio_persona }} €</p>
-  {% if actividad.dificultad %}
-  <p><strong>Dificultad:</strong> {{ actividad.dificultad }}</p>
-  {% endif %}
-  {% if actividad.edad_minima is not none %}
-  <p><strong>Edad mínima:</strong> {{ actividad.edad_minima }} años</p>
-  {% endif %}
-  {% if actividad.incluye %}
-  <p><strong>Incluye:</strong> {{ actividad.incluye }}</p>
+  <p><strong>Destino:</strong> {{ actividad.nombre_destino }}</p>
+  <p><strong>Duración:</strong> {{ actividad.duracion }} horas</p>
+  <p><strong>Precio por persona:</strong> {{ actividad.precio }} €</p>
+  {% if actividad.edad is not none %}
+  <p><strong>Edad mínima:</strong> {{ actividad.edad }} años</p>
   {% endif %}
 </div>
 
 <p>
-<a class="boton" href="{{ url_for('detalle_destino', id_destino=actividad.id_destino) }}">Ver guía completa de {{ actividad.nombre_destino }}</a></p>
+  <a class="boton" href="{{ url_for('detalle_destino', id_destino=actividad.id_destino) }}">Ver guía completa de {{
+    actividad.nombre_destino }}</a>
+</p>
 {% endblock %}

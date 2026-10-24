@@ -21,7 +21,8 @@
 {% if alojamientos %}
 <ul class="lista">
   {% for a in alojamientos %}
-  <li><a href="{{ url_for('detalle_alojamiento', id_alojamiento=a.id_alojamiento) }}">{{ a.nombre }}</a> - {{ a.tipo|tipo_texto }}</li>
+  <li><a href="{{ url_for('detalle_alojamiento', id_alojamiento=a.id_alojamiento) }}">{{ a.nombre }}</a> - {{
+    a.tipo|tipo_texto }}</li>
   {% endfor %}
 </ul>
 {% else %}

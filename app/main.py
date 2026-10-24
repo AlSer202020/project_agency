@@ -133,6 +133,7 @@ def detalle_alojamiento(id_alojamiento):
 @app.route("/actividad/<int:id_actividad>")
 def detalle_actividad(id_actividad):
     actividad = actividad_con_destino(id_actividad)
+    #destino = obtener_destino_por_id(actividad["id_destino"]) if actividad else None
     if actividad is None:
         abort(404)
 
