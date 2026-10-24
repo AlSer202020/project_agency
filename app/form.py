@@ -5,7 +5,6 @@ from wtforms.validators import Optional, NumberRange
 from data.data_destinos import ENTORNOS
 from data.data_alojamientos import TIPOS
 
-# Las opciones salen de los diccionarios de los módulos de datos
 OPCIONES_ENTORNO = [("", "Cualquiera")] + list(ENTORNOS.items())
 OPCIONES_TIPO = [("", "Cualquiera")] + list(TIPOS.items())
 
@@ -14,7 +13,7 @@ MENSAJE_PRECIO = "Introduce un precio entre 0 y 5000 €."
 
 class ExploradorForm(FlaskForm):
     class Meta:
-        csrf = False  # Formulario de solo consulta: sin CSRF
+        csrf = False  
 
     entorno = SelectField("Tipo de entorno", choices=OPCIONES_ENTORNO)
     sin_visado = BooleanField("Solo destinos sin visado")

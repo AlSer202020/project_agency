@@ -1,18 +1,4 @@
-"""
-Módulo de datos: ACTIVIDADES
-----------------------------
-Campos (según el esquema del cuaderno):
-    id_actividad  (int)          Identificador único.
-    id_destino    (int)          Relación con DESTINOS["id_destino"].
-    nombre        (str)          Nombre de la experiencia o excursión.
-    duracion      (int)          Duración aproximada en horas.
-    precio        (int)          Precio por persona en euros.
-    edad          (int | None)   Edad mínima (opcional).
-    descripcion   (str | None)   En qué consiste / qué incluye / dificultad (opcional).
-"""
-
 ACTIVIDADES = [
-    # --- Kioto (id_destino 1) ---
     {
         "id_actividad": 1, "id_destino": 1,
         "nombre": "Ceremonia del Té en Gion",
@@ -40,8 +26,6 @@ ACTIVIDADES = [
         "duracion": 4, "precio": 50, "edad": None,
         "descripcion": "Dificultad baja. Incluye alquiler de bicicleta eléctrica y casco.",
     },
-    # --- Islas Lofoten (id_destino 2): sin actividades ---
-    # --- Zanzíbar (id_destino 3) ---
     {
         "id_actividad": 5, "id_destino": 3,
         "nombre": "Ruta de las Especias y Paseo en Dhow",
@@ -60,7 +44,6 @@ ACTIVIDADES = [
         "duracion": 2, "precio": 20, "edad": None,
         "descripcion": None,
     },
-    # --- Playa del Carmen (id_destino 4) ---
     {
         "id_actividad": 8, "id_destino": 4,
         "nombre": "Buceo en Cenotes Sagrados",
@@ -87,36 +70,25 @@ ACTIVIDADES = [
     },
 ]
 
-
-# --- Funciones de acceso ---------------------------------------------------
-
 def obtener_actividades():
-    """Todas las actividades ordenadas por nombre."""
     return sorted(ACTIVIDADES, key=lambda a: a["nombre"])
 
 
 def contar_actividades():
-    """Número total de actividades (portada)."""
     return len(ACTIVIDADES)
 
 
 def obtener_actividad_por_id(id_actividad):
-    """Actividad con ese id, o None si no existe."""
     return next((a for a in ACTIVIDADES if a["id_actividad"] == id_actividad), None)
 
 
 def obtener_actividades_por_destino(id_destino):
-    """Actividades de un destino (lista vacía si no hay)."""
     return sorted(
         (a for a in ACTIVIDADES if a["id_destino"] == id_destino),
         key=lambda a: a["nombre"],
     )
 
-
-# --- Funciones de filtrado (para requerimientos futuros) -------------------
-
 def filtrar_actividades(precio_max=None, edad=None, duracion_max=None, ids_destino=None):
-    """Filtra por precio máximo, edad del viajero, duración máxima y destinos."""
     resultado = ACTIVIDADES
     if precio_max is not None:
         resultado = [a for a in resultado if a["precio"] <= precio_max]

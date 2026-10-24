@@ -1,18 +1,3 @@
-"""
-Módulo de datos: ALOJAMIENTOS
------------------------------
-Campos (según el esquema del cuaderno):
-    id_alojamiento  (int)          Identificador único.
-    id_destino      (int)          Relación con DESTINOS["id_destino"].
-    nombre          (str)          Nombre comercial.
-    tipo            (str)          "hotel", "hostal", "cabana" o "apartamento" (ver TIPOS).
-    precio          (int)          Precio por noche en euros.
-    desayuno        (bool)         True si incluye desayuno.
-    mascota         (bool)         True si admite mascotas.
-    estrellas       (int | None)   Categoría oficial (opcional).
-    descripcion     (str | None)   Servicios o extras destacados (opcional).
-"""
-
 TIPOS = {
     "hotel": "Hotel",
     "hostal": "Hostal",
@@ -21,7 +6,6 @@ TIPOS = {
 }
 
 ALOJAMIENTOS = [
-    # --- Kioto (id_destino 1) ---
     {
         "id_alojamiento": 1, "id_destino": 1,
         "nombre": "Ryokan Tradicional Gion", "tipo": "hotel",
@@ -43,7 +27,6 @@ ALOJAMIENTOS = [
         "estrellas": None,
         "descripcion": "Terraza con vistas al río.",
     },
-    # --- Islas Lofoten (id_destino 2) ---
     {
         "id_alojamiento": 4, "id_destino": 2,
         "nombre": "Rorbu Fjord Cabins", "tipo": "cabana",
@@ -65,8 +48,6 @@ ALOJAMIENTOS = [
         "estrellas": None,
         "descripcion": None,
     },
-    # --- Zanzíbar (id_destino 3): sin alojamientos ---
-    # --- Playa del Carmen (id_destino 4) ---
     {
         "id_alojamiento": 7, "id_destino": 4,
         "nombre": "Hostal Caribe Maya", "tipo": "hostal",
@@ -97,26 +78,19 @@ ALOJAMIENTOS = [
     },
 ]
 
-
-# --- Funciones de acceso ---------------------------------------------------
-
 def obtener_alojamientos():
-    """Todos los alojamientos ordenados por nombre."""
     return sorted(ALOJAMIENTOS, key=lambda a: a["nombre"])
 
 
 def contar_alojamientos():
-    """Número total de alojamientos (portada)."""
     return len(ALOJAMIENTOS)
 
 
 def obtener_alojamiento_por_id(id_alojamiento):
-    """Alojamiento con ese id, o None si no existe."""
     return next((a for a in ALOJAMIENTOS if a["id_alojamiento"] == id_alojamiento), None)
 
 
 def obtener_alojamientos_por_destino(id_destino):
-    """Alojamientos de un destino (lista vacía si no hay), por precio."""
     return sorted(
         (a for a in ALOJAMIENTOS if a["id_destino"] == id_destino),
         key=lambda a: a["precio"],
@@ -124,18 +98,13 @@ def obtener_alojamientos_por_destino(id_destino):
 
 
 def nombre_tipo(clave):
-    """Texto visible del tipo de alojamiento."""
     return TIPOS.get(clave, clave)
 
 
-# --- Funciones de filtrado -------------------------------------------------
 
 def filtrar_alojamientos(precio_max=None, tipo=None, desayuno=False, mascota=False,
                          ids_destino=None):
-    """
-    Comparador de Alojamientos (y base del Asistente de Viaje a Medida).
-    Los criterios vacíos (None / False / "") no filtran.
-    """
+    
     resultado = ALOJAMIENTOS
     if precio_max is not None:
         resultado = [a for a in resultado if a["precio"] <= precio_max]

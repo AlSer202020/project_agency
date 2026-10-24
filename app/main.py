@@ -20,17 +20,16 @@ from data.data_destinos import (
 )
 from form import ExploradorForm, ComparadorForm, AsistenteForm
 
-# Inicializamos la aplicación
+
 app = Flask(__name__)
-# Clave necesaria para Flask-WTF (el CSRF está desactivado en los formularios)
+
 app.config["SECRET_KEY"] = "mi_clave_secreta_super_segura"
 
-# Filtros para las plantillas: convierten la clave ("montana") en texto ("Montaña")
+
 app.jinja_env.filters["entorno_texto"] = nombre_entorno
 app.jinja_env.filters["tipo_texto"] = nombre_tipo
 
 
-# ---------- Páginas estáticas ----------
 @app.route("/")
 def inicio():
     return render_template("index.html", resumen=resumen_catalogo())
@@ -41,7 +40,6 @@ def acerca():
     return render_template("about.html")
 
 
-# ---------- Directorios generales ----------
 @app.route("/destinos")
 def lista_destinos():
     return render_template("destinos.html", destinos=obtener_destinos())
@@ -61,13 +59,10 @@ def lista_actividades():
     )
 
 
-# ---------- Buscadores con formulario ----------
 @app.route("/explorador", methods=["GET", "POST"])
 def explorador_destinos():
     form = ExploradorForm()
-    resultados = None  # None = todavía no se ha buscado
-
-    # validate_on_submit comprueba si la petición es POST y si todos los campos son válidos
+    resultados = None  
     if form.validate_on_submit():
         resultados = filtrar_destinos(
             entorno=form.entorno.data,
@@ -110,7 +105,6 @@ def asistente_viaje():
     return render_template("asistente.html", form=form, resultados=resultados)
 
 
-# ---------- Fichas de detalle ----------
 @app.route("/destino/<int:id_destino>")
 def detalle_destino(id_destino):
     lista_destinos=obtener_destinos()
@@ -145,13 +139,10 @@ def detalle_actividad(id_actividad):
     return render_template("actividad_detalle.html", actividad=actividad)
 
 
-# ---------- Error 404 personalizado ----------
 @app.errorhandler(404)
 def pagina_no_encontrada(e):
     return render_template("404.html"), 404
 
 
 if __name__ == "__main__":
-    # host='0.0.0.0' es VITAL en Docker para que el servidor sea accesible desde fuera del contenedor
-    # debug=True reinicia el servidor automáticamente si cambias este archivo
     app.run(host="0.0.0.0", port=5000, debug=True)
