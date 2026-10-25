@@ -18,7 +18,7 @@ DESTINOS = [
             "para el acceso a los templos tradicionales."
         ),
         "temporada": "Primavera",
-        "imagen": None,
+        "imagen": "kioto.jpg",
     },
     {
         "id_destino": 2,
@@ -28,7 +28,7 @@ DESTINOS = [
         "visado": False,
         "consejo": "Es imprescindible viajar con ropa térmica extrema y calzado impermeable.",
         "temporada": "Invierno",
-        "imagen": None,
+        "imagen": "lofoten.jpg",
     },
     {
         "id_destino": 3,
@@ -38,7 +38,7 @@ DESTINOS = [
         "visado": True,
         "consejo": None,
         "temporada": "Verano",
-        "imagen": None,
+        "imagen": "zanzibar.jpg",
     },
     {
         "id_destino": 4,
@@ -51,7 +51,7 @@ DESTINOS = [
             "todas las zonas turísticas."
         ),
         "temporada": "Verano",
-        "imagen": None,
+        "imagen": "playa_del_carmen.jpg",
     },
 ]
 
